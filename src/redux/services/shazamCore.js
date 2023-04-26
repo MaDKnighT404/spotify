@@ -15,7 +15,13 @@ export const shazamCoreApi = createApi({
     getTopCharts: builder.query({
       query: () => 'charts/track?locale=en-US&pageSize=20&startFrom=0',
     }),
+    getSongDetails: builder.query({
+      query: ({ songid }) => `/shazam-songs/get-details?id=${songid}&locale=en-US`,
+    }),
+    getSongRelated: builder.query({
+      query: ({ songid }) => `/shazam-songs/list-similarities?id=track-similarities-id-${songid}&locale=en-US`,
+    }),
   }),
 });
 
-export const { useGetTopChartsQuery } = shazamCoreApi;
+export const { useGetTopChartsQuery, useGetSongDetailsQuery, useGetSongRelatedQuery } = shazamCoreApi;
